@@ -893,6 +893,10 @@ along with GCC; see the file COPYING3.  If not see
 #define ggc_alloc_cleared_eh_landing_pad_d() ((struct eh_landing_pad_d *)(ggc_internal_cleared_alloc_stat (sizeof (struct eh_landing_pad_d) MEM_STAT_INFO)))
 #define ggc_alloc_vec_eh_landing_pad_d(n) ((struct eh_landing_pad_d *)(ggc_internal_vec_alloc_stat (sizeof (struct eh_landing_pad_d), n MEM_STAT_INFO)))
 #define ggc_alloc_cleared_vec_eh_landing_pad_d(n) ((struct eh_landing_pad_d *)(ggc_internal_cleared_vec_alloc_stat (sizeof (struct eh_landing_pad_d), n MEM_STAT_INFO)))
+#define ggc_alloc_pointer_map_t() ((struct pointer_map_t *)(ggc_internal_alloc_stat (sizeof (struct pointer_map_t) MEM_STAT_INFO)))
+#define ggc_alloc_cleared_pointer_map_t() ((struct pointer_map_t *)(ggc_internal_cleared_alloc_stat (sizeof (struct pointer_map_t) MEM_STAT_INFO)))
+#define ggc_alloc_vec_pointer_map_t(n) ((struct pointer_map_t *)(ggc_internal_vec_alloc_stat (sizeof (struct pointer_map_t), n MEM_STAT_INFO)))
+#define ggc_alloc_cleared_vec_pointer_map_t(n) ((struct pointer_map_t *)(ggc_internal_cleared_vec_alloc_stat (sizeof (struct pointer_map_t), n MEM_STAT_INFO)))
 #define ggc_alloc_eh_region_d() ((struct eh_region_d *)(ggc_internal_alloc_stat (sizeof (struct eh_region_d) MEM_STAT_INFO)))
 #define ggc_alloc_cleared_eh_region_d() ((struct eh_region_d *)(ggc_internal_cleared_alloc_stat (sizeof (struct eh_region_d) MEM_STAT_INFO)))
 #define ggc_alloc_vec_eh_region_d(n) ((struct eh_region_d *)(ggc_internal_vec_alloc_stat (sizeof (struct eh_region_d), n MEM_STAT_INFO)))
@@ -3202,6 +3206,10 @@ extern void gt_ggc_mx_eh_catch_d (void *);
   if (X != NULL) gt_ggc_mx_eh_landing_pad_d (X);\
   } while (0)
 extern void gt_ggc_mx_eh_landing_pad_d (void *);
+#define gt_ggc_m_13pointer_map_t(X) do { \
+  if (X != NULL) gt_ggc_mx_pointer_map_t (X);\
+  } while (0)
+extern void gt_ggc_mx_pointer_map_t (void *);
 #define gt_ggc_m_11eh_region_d(X) do { \
   if (X != NULL) gt_ggc_mx_eh_region_d (X);\
   } while (0)
@@ -4088,6 +4096,10 @@ extern void gt_pch_nx_eh_catch_d (void *);
   if (X != NULL) gt_pch_nx_eh_landing_pad_d (X);\
   } while (0)
 extern void gt_pch_nx_eh_landing_pad_d (void *);
+#define gt_pch_n_13pointer_map_t(X) do { \
+  if (X != NULL) gt_pch_nx_pointer_map_t (X);\
+  } while (0)
+extern void gt_pch_nx_pointer_map_t (void *);
 #define gt_pch_n_11eh_region_d(X) do { \
   if (X != NULL) gt_pch_nx_eh_region_d (X);\
   } while (0)
@@ -4848,6 +4860,8 @@ extern void gt_pch_p_20vec_eh_region_va_gc_
 extern void gt_pch_p_10eh_catch_d
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_16eh_landing_pad_d
+    (void *, void *, gt_pointer_operator, void *);
+extern void gt_pch_p_13pointer_map_t
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_11eh_region_d
     (void *, void *, gt_pointer_operator, void *);
