@@ -3686,7 +3686,6 @@ extern void gt_ggc_m_P9type_hash4htab (void *);
 extern void gt_ggc_m_P23temp_slot_address_entry4htab (void *);
 extern void gt_ggc_m_P15throw_stmt_node4htab (void *);
 extern void gt_ggc_m_P9reg_attrs4htab (void *);
-extern void gt_ggc_m_P9mem_attrs4htab (void *);
 extern void gt_ggc_m_P7rtx_def4htab (void *);
 extern void gt_ggc_m_P23addr_table_entry_struct4htab (void *);
 extern void gt_ggc_m_P22cached_dw_loc_list_def4htab (void *);
@@ -4576,7 +4575,6 @@ extern void gt_pch_n_P9type_hash4htab (void *);
 extern void gt_pch_n_P23temp_slot_address_entry4htab (void *);
 extern void gt_pch_n_P15throw_stmt_node4htab (void *);
 extern void gt_pch_n_P9reg_attrs4htab (void *);
-extern void gt_pch_n_P9mem_attrs4htab (void *);
 extern void gt_pch_n_P7rtx_def4htab (void *);
 extern void gt_pch_n_P23addr_table_entry_struct4htab (void *);
 extern void gt_pch_n_P22cached_dw_loc_list_def4htab (void *);
@@ -5152,8 +5150,6 @@ extern void gt_pch_p_P15throw_stmt_node4htab
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_P9reg_attrs4htab
     (void *, void *, gt_pointer_operator, void *);
-extern void gt_pch_p_P9mem_attrs4htab
-    (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_P7rtx_def4htab
     (void *, void *, gt_pointer_operator, void *);
 extern void gt_pch_p_P23addr_table_entry_struct4htab
@@ -5220,7 +5216,6 @@ extern void * ggc_alloc_splay_tree_type_hash_htab (int, void *);
 extern void * ggc_alloc_splay_tree_temp_slot_address_entry_htab (int, void *);
 extern void * ggc_alloc_splay_tree_throw_stmt_node_htab (int, void *);
 extern void * ggc_alloc_splay_tree_reg_attrs_htab (int, void *);
-extern void * ggc_alloc_splay_tree_mem_attrs_htab (int, void *);
 extern void * ggc_alloc_splay_tree_rtx_def_htab (int, void *);
 extern void * ggc_alloc_splay_tree_addr_table_entry_struct_htab (int, void *);
 extern void * ggc_alloc_splay_tree_cached_dw_loc_list_def_htab (int, void *);

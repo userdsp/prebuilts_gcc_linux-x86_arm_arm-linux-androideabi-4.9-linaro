@@ -246,24 +246,28 @@ MPC Library version 0.8.1 (or later)
      `--with-mpc' configure option should be used.  See also
      `--with-mpc-lib' and `--with-mpc-include'.
 
-ISL Library version 0.11.1
+ISL Library version 0.12.2
      Necessary to build GCC with the Graphite loop optimizations.  It
      can be downloaded from `ftp://gcc.gnu.org/pub/gcc/infrastructure/'
-     as `isl-0.11.1.tar.bz2'.
+     as `isl-0.12.2.tar.bz2'.  If an ISL source distribution is found
+     in a subdirectory of your GCC sources named `isl', it will be
+     built together with GCC.  Alternatively, the `--with-isl' configure
+     option should be used if ISL is not installed in your default
+     library search path.
 
-     The `--with-isl' configure option should be used if ISL is not
-     installed in your default library search path.
-
-CLooG 0.18.0
+CLooG 0.18.1
      Necessary to build GCC with the Graphite loop optimizations.  It
      can be downloaded from `ftp://gcc.gnu.org/pub/gcc/infrastructure/'
-     as `cloog-0.18.0.tar.gz'.  The `--with-cloog' configure option
-     should be used if CLooG is not installed in your default library
-     search path.  CLooG needs to be built against ISL 0.11.1.  Use
-     `--with-isl=system' to direct CLooG to pick up an already
-     installed ISL, otherwise it will use ISL 0.11.1 as bundled with
-     CLooG.  CLooG needs to be configured to use GMP internally, use
-     `--with-bits=gmp' to direct it to do that.
+     as `cloog-0.18.1.tar.gz'.  If a CLooG source distribution is found
+     in a subdirectory of your GCC sources named `cloog', it will be
+     built together with GCC.  Alternatively, the `--with-cloog'
+     configure option should be used if CLooG is not installed in your
+     default library search path.
+
+     If you want to install CLooG separately it needs to be built
+     against ISL 0.12.2 by using the `--with-isl=system' to direct
+     CLooG to pick up an already installed ISL.  Using the ISL library
+     as bundled with CLooG is not supported.
 
 
 Tools/packages necessary for modifying GCC
@@ -3385,6 +3389,16 @@ msp430-*-elf
 TI MSP430 processor.  This configuration is intended for embedded
 systems.
 
+nds32le-*-elf
+=============
+
+Andes NDS32 target in little endian mode.
+
+nds32be-*-elf
+=============
+
+Andes NDS32 target in big endian mode.
+
 powerpc-*-*
 ===========
 
@@ -3692,8 +3706,14 @@ The C6X family of processors. This port requires binutils-2.22 or newer.
 tilegx-*-linux*
 ===============
 
-The TILE-Gx processor running GNU/Linux.  This port requires
-binutils-2.22 or newer.
+The TILE-Gx processor in little endian mode, running GNU/Linux.  This
+port requires binutils-2.22 or newer.
+
+tilegxbe-*-linux*
+=================
+
+The TILE-Gx processor in big endian mode, running GNU/Linux.  This port
+requires binutils-2.23 or newer.
 
 tilepro-*-linux*
 ================
@@ -4594,94 +4614,97 @@ Tag Table:
 Node: Top1805
 Node: Installing GCC2363
 Node: Prerequisites4000
-Node: Downloading the source15410
-Node: Configuration16964
-Ref: with-gnu-as32426
-Ref: with-as33324
-Ref: with-gnu-ld34737
-Node: Building84437
-Node: Testing99922
-Node: Final install107794
-Node: Binaries113108
-Node: Specific114620
-Ref: alpha-x-x115130
-Ref: alpha-dec-osf51115619
-Ref: amd64-x-solaris210116144
-Ref: arc-x-elf32116247
-Ref: arc-linux-uclibc116423
-Ref: arm-x-eabi116564
-Ref: avr116775
-Ref: bfin117415
-Ref: cr16117657
-Ref: cris118072
-Ref: dos118888
-Ref: epiphany-x-elf119211
-Ref: x-x-freebsd119316
-Ref: h8300-hms121153
-Ref: hppa-hp-hpux121505
-Ref: hppa-hp-hpux10123876
-Ref: hppa-hp-hpux11124289
-Ref: x-x-linux-gnu129948
-Ref: ix86-x-linux130141
-Ref: ix86-x-solaris29130454
-Ref: ix86-x-solaris210131233
-Ref: ia64-x-linux132424
-Ref: ia64-x-hpux133194
-Ref: aarch64-x-x133749
-Ref: x-ibm-aix133951
-Ref: iq2000-x-elf140814
-Ref: lm32-x-elf140954
-Ref: lm32-x-uclinux141058
-Ref: m32c-x-elf141186
-Ref: m32r-x-elf141288
-Ref: m68k-x-x141390
-Ref: m68k-x-uclinux142428
-Ref: mep-x-elf142674
-Ref: microblaze-x-elf142784
-Ref: mips-x-x142903
-Ref: mips-sgi-irix5145299
-Ref: mips-sgi-irix6145379
-Ref: moxie-x-elf145566
-Ref: msp430-x-elf145613
-Ref: powerpc-x-x145716
-Ref: powerpc-x-darwin145921
-Ref: powerpc-x-elf146415
-Ref: powerpc-x-linux-gnu146500
-Ref: powerpc-x-netbsd146595
-Ref: powerpc-x-eabisim146683
-Ref: powerpc-x-eabi146809
-Ref: powerpcle-x-elf146885
-Ref: powerpcle-x-eabisim146977
-Ref: powerpcle-x-eabi147110
-Ref: rl78-x-elf147193
-Ref: rx-x-elf147299
-Ref: s390-x-linux147498
-Ref: s390x-x-linux147570
-Ref: s390x-ibm-tpf147657
-Ref: x-x-solaris2147788
-Ref: sparc-x-x152708
-Ref: sparc-sun-solaris2153210
-Ref: sparc-sun-solaris210155964
-Ref: sparc-x-linux156340
-Ref: sparc64-x-solaris2156565
-Ref: sparcv9-x-solaris2157218
-Ref: c6x-x-x157305
-Ref: tilegx-*-linux157396
-Ref: tilepro-*-linux157515
-Ref: x-x-vxworks157636
-Ref: x86-64-x-x159158
-Ref: x86-64-x-solaris210159486
-Ref: xtensa-x-elf160148
-Ref: xtensa-x-linux160819
-Ref: windows161160
-Ref: x-x-cygwin163097
-Ref: x-x-interix163650
-Ref: x-x-mingw32163959
-Ref: older164185
-Ref: elf166302
-Node: Old166560
-Node: Configurations169697
-Node: GNU Free Documentation License173238
-Node: Concept Index198385
+Node: Downloading the source15668
+Node: Configuration17222
+Ref: with-gnu-as32684
+Ref: with-as33582
+Ref: with-gnu-ld34995
+Node: Building84695
+Node: Testing100180
+Node: Final install108052
+Node: Binaries113366
+Node: Specific114878
+Ref: alpha-x-x115388
+Ref: alpha-dec-osf51115877
+Ref: amd64-x-solaris210116402
+Ref: arc-x-elf32116505
+Ref: arc-linux-uclibc116681
+Ref: arm-x-eabi116822
+Ref: avr117033
+Ref: bfin117673
+Ref: cr16117915
+Ref: cris118330
+Ref: dos119146
+Ref: epiphany-x-elf119469
+Ref: x-x-freebsd119574
+Ref: h8300-hms121411
+Ref: hppa-hp-hpux121763
+Ref: hppa-hp-hpux10124134
+Ref: hppa-hp-hpux11124547
+Ref: x-x-linux-gnu130206
+Ref: ix86-x-linux130399
+Ref: ix86-x-solaris29130712
+Ref: ix86-x-solaris210131491
+Ref: ia64-x-linux132682
+Ref: ia64-x-hpux133452
+Ref: aarch64-x-x134007
+Ref: x-ibm-aix134209
+Ref: iq2000-x-elf141072
+Ref: lm32-x-elf141212
+Ref: lm32-x-uclinux141316
+Ref: m32c-x-elf141444
+Ref: m32r-x-elf141546
+Ref: m68k-x-x141648
+Ref: m68k-x-uclinux142686
+Ref: mep-x-elf142932
+Ref: microblaze-x-elf143042
+Ref: mips-x-x143161
+Ref: mips-sgi-irix5145557
+Ref: mips-sgi-irix6145637
+Ref: moxie-x-elf145824
+Ref: msp430-x-elf145871
+Ref: nds32le-x-elf145974
+Ref: nds32be-x-elf146046
+Ref: powerpc-x-x146115
+Ref: powerpc-x-darwin146320
+Ref: powerpc-x-elf146814
+Ref: powerpc-x-linux-gnu146899
+Ref: powerpc-x-netbsd146994
+Ref: powerpc-x-eabisim147082
+Ref: powerpc-x-eabi147208
+Ref: powerpcle-x-elf147284
+Ref: powerpcle-x-eabisim147376
+Ref: powerpcle-x-eabi147509
+Ref: rl78-x-elf147592
+Ref: rx-x-elf147698
+Ref: s390-x-linux147897
+Ref: s390x-x-linux147969
+Ref: s390x-ibm-tpf148056
+Ref: x-x-solaris2148187
+Ref: sparc-x-x153107
+Ref: sparc-sun-solaris2153609
+Ref: sparc-sun-solaris210156363
+Ref: sparc-x-linux156739
+Ref: sparc64-x-solaris2156964
+Ref: sparcv9-x-solaris2157617
+Ref: c6x-x-x157704
+Ref: tilegx-*-linux157795
+Ref: tilegxbe-*-linux157937
+Ref: tilepro-*-linux158080
+Ref: x-x-vxworks158201
+Ref: x86-64-x-x159723
+Ref: x86-64-x-solaris210160051
+Ref: xtensa-x-elf160713
+Ref: xtensa-x-linux161384
+Ref: windows161725
+Ref: x-x-cygwin163662
+Ref: x-x-interix164215
+Ref: x-x-mingw32164524
+Ref: older164750
+Ref: elf166867
+Node: Old167125
+Node: Configurations170262
+Node: GNU Free Documentation License173803
+Node: Concept Index198950
 
 End Tag Table
