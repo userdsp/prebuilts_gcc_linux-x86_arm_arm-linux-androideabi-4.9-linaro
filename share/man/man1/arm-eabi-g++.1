@@ -124,7 +124,7 @@
 .\" ========================================================================
 .\"
 .IX Title "GCC 1"
-.TH GCC 1 "2014-03-28" "gcc-4.9.0" "GNU"
+.TH GCC 1 "2014-04-07" "gcc-4.9.0" "GNU"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -2571,9 +2571,10 @@ the compiler to never throw an exception.
 .IP "\fB\-Wnon\-virtual\-dtor\fR (\*(C+ and Objective\-\*(C+ only)" 4
 .IX Item "-Wnon-virtual-dtor ( and Objective- only)"
 Warn when a class has virtual functions and an accessible non-virtual
-destructor, in which case it is possible but unsafe to delete
-an instance of a derived class through a pointer to the base class.
-This warning is also enabled if \fB\-Weffc++\fR is specified.
+destructor itself or in a base class, or has in which case it is
+possible but unsafe to delete an instance of a derived class through a
+pointer to the base class.  This warning is automatically enabled if
+\&\fB\-Weffc++\fR is specified.
 .IP "\fB\-Wreorder\fR (\*(C+ and Objective\-\*(C+ only)" 4
 .IX Item "-Wreorder ( and Objective- only)"
 Warn when the order of member initializers given in the code does not
@@ -2606,31 +2607,27 @@ The following \fB\-W...\fR options are not affected by \fB\-Wall\fR.
 .IP "\fB\-Weffc++\fR (\*(C+ and Objective\-\*(C+ only)" 4
 .IX Item "-Weffc++ ( and Objective- only)"
 Warn about violations of the following style guidelines from Scott Meyers'
-\&\fIEffective \*(C+, Second Edition\fR book:
+\&\fIEffective \*(C+\fR series of books:
 .RS 4
 .IP "\(bu" 4
-Item 11:  Define a copy constructor and an assignment operator for classes
+Define a copy constructor and an assignment operator for classes
 with dynamically-allocated memory.
 .IP "\(bu" 4
-Item 12:  Prefer initialization to assignment in constructors.
+Prefer initialization to assignment in constructors.
 .IP "\(bu" 4
-Item 14:  Make destructors virtual in base classes.
+Have \f(CW\*(C`operator=\*(C'\fR return a reference to \f(CW*this\fR.
 .IP "\(bu" 4
-Item 15:  Have \f(CW\*(C`operator=\*(C'\fR return a reference to \f(CW*this\fR.
+Don't try to return a reference when you must return an object.
 .IP "\(bu" 4
-Item 23:  Don't try to return a reference when you must return an object.
+Distinguish between prefix and postfix forms of increment and
+decrement operators.
+.IP "\(bu" 4
+Never overload \f(CW\*(C`&&\*(C'\fR, \f(CW\*(C`||\*(C'\fR, or \f(CW\*(C`,\*(C'\fR.
 .RE
 .RS 4
 .Sp
-Also warn about violations of the following style guidelines from
-Scott Meyers' \fIMore Effective \*(C+\fR book:
-.IP "\(bu" 4
-Item 6:  Distinguish between prefix and postfix forms of increment and
-decrement operators.
-.IP "\(bu" 4
-Item 7:  Never overload \f(CW\*(C`&&\*(C'\fR, \f(CW\*(C`||\*(C'\fR, or \f(CW\*(C`,\*(C'\fR.
-.RE
-.RS 4
+This option also enables \fB\-Wnon\-virtual\-dtor\fR, which is also
+one of the effective \*(C+ recommendations.
 .Sp
 When selecting this option, be aware that the standard library
 headers do not obey all of these guidelines; use \fBgrep \-v\fR
@@ -12147,6 +12144,10 @@ instructions because of a hardware erratum.  Skip instructions are
 \&\f(CW\*(C`SBRS\*(C'\fR, \f(CW\*(C`SBRC\*(C'\fR, \f(CW\*(C`SBIS\*(C'\fR, \f(CW\*(C`SBIC\*(C'\fR and \f(CW\*(C`CPSE\*(C'\fR.
 The second macro is only defined if \f(CW\*(C`_\|_AVR_HAVE_JMP_CALL_\|_\*(C'\fR is also
 set.
+.ie n .IP """_\|_AVR_ISA_RMW_\|_""" 4
+.el .IP "\f(CW_\|_AVR_ISA_RMW_\|_\fR" 4
+.IX Item "__AVR_ISA_RMW__"
+The device has Read-Modify-Write instructions (\s-1XCH\s0, \s-1LAC\s0, \s-1LAS\s0 and \s-1LAT\s0).
 .ie n .IP """_\|_AVR_SFR_OFFSET_\|_=\f(CIoffset\f(CW""" 4
 .el .IP "\f(CW_\|_AVR_SFR_OFFSET_\|_=\f(CIoffset\f(CW\fR" 4
 .IX Item "__AVR_SFR_OFFSET__=offset"
@@ -19660,8 +19661,9 @@ These \fB\-m\fR options are supported on the \s-1SPARC:\s0
 .IX Item "-mapp-regs"
 .PD
 Specify \fB\-mapp\-regs\fR to generate output using the global registers
-2 through 4, which the \s-1SPARC\s0 \s-1SVR4\s0 \s-1ABI\s0 reserves for applications.  This
-is the default.
+2 through 4, which the \s-1SPARC\s0 \s-1SVR4\s0 \s-1ABI\s0 reserves for applications.  Like the
+global register 1, each global register 2 through 4 is then treated as an
+allocable register that is clobbered by function calls.  This is the default.
 .Sp
 To be fully \s-1SVR4\s0 ABI-compliant at the cost of some performance loss,
 specify \fB\-mno\-app\-regs\fR.  You should compile libraries and system

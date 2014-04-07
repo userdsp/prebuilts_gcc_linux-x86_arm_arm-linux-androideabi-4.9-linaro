@@ -43,6 +43,8 @@ extern int arm_not_immediate_operand (rtx, enum machine_mode);
 extern int const0_operand (rtx, enum machine_mode);
 extern int arm_rhs_operand (rtx, enum machine_mode);
 extern int arm_rhsm_operand (rtx, enum machine_mode);
+extern int const_int_I_operand (rtx, enum machine_mode);
+extern int const_int_M_operand (rtx, enum machine_mode);
 extern int shift_amount_operand (rtx, enum machine_mode);
 extern int const_neon_scalar_shift_amount_operand (rtx, enum machine_mode);
 extern int ldrd_strd_offset_operand (rtx, enum machine_mode);
